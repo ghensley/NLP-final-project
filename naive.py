@@ -54,23 +54,37 @@ for syl in sylProbs:
 partsOfWord = []
 def program(word, partsOfWord):
 	listOfSplits.append(partsOfWord)
-	for eachPart in partsOfWord:
-		if (len(eachPart) > 1):
+	#for eachPart in partsOfWord:
+	j = 0
+	while j < len(partsOfWord):
+		#if (len(eachPart) > 1):
+		if (len(partsOfWord[j]) > 1):
 			i = 1
-			while(i < len(eachPart)):
+			#while(i < len(eachPart)):
+			while(i<len(partsOfWord[j])):
 				holder1 = ""
 				holder2 = ""
-				#holder= eachPart.split(i)
-				holder1= eachPart[0:i]
-				holder2=eachPart[i:len(eachPart)]
+				#holder1= eachPart[0:i]
+				holder1= partsOfWord[j][0:i]
+				#holder2=eachPart[i:len(eachPart)]
+				holder2=partsOfWord[j][i:len(partsOfWord[j])]
 				temp = []
 				temp = copy.deepcopy(partsOfWord)
+				#temp.remove(eachPart)
+				#temp.append(holder1)
+				#temp.append(holder2)
+				temp[j]=holder2
+				temp.insert(j,holder1)
 				
-				temp.remove(eachPart)
-				temp.append(holder1)
-				temp.append(holder2)
+				#index = len(temp)
+				#while(index > i):
+				#	temp[index + 1] = temp[index]
+				#	index -=1
+				
+				
 				program(word,temp)
 				i+=1
+		j+=1
 		#else:
 			#do something or maybe nothing?
 
@@ -105,5 +119,4 @@ for combo in listOfSplits:
 		bestSequenceHolder = combo
 		bestProbHolder = tempProbHolder
 		
-print bestProbHolder
 print bestSequenceHolder
